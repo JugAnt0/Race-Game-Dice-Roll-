@@ -1,0 +1,48 @@
+import random
+import time
+
+def race_game():
+    print("🏁 Welcome to the Dice Race Game!")
+    print("You and the computer will race to the finish line.\n")
+
+    finish_line = 30  # distance to win
+    player_pos = 0
+    computer_pos = 0
+
+    while player_pos < finish_line and computer_pos < finish_line:
+        input("🎲 Press Enter to roll the dice...")
+
+    
+        player_roll = random.randint(1, 6)
+        player_pos += player_roll
+        print(f"👤 You rolled {player_roll}! You are now at position {player_pos}.")
+
+ 
+        time.sleep(1)
+        computer_roll = random.randint(1, 6)
+        computer_pos += computer_roll
+        print(f"🤖 Computer rolled {computer_roll}! Computer is now at position {computer_pos}.")
+
+ 
+        track = ["-"] * finish_line
+        if player_pos < finish_line:
+            track[player_pos-1] = "P"
+        else:
+            track[-1] = "P"
+        if computer_pos < finish_line:
+            track[computer_pos-1] = "C"
+        else:
+            track[-1] = "C"
+        print("".join(track))
+
+        print("-" * 40)
+        time.sleep(1)
+
+    if player_pos >= finish_line and computer_pos >= finish_line:
+        print("🤝 It's a tie!")
+    elif player_pos >= finish_line:
+        print("🏆 You win!")
+    else:
+        print("😢 Computer wins!")
+
+race_game()
